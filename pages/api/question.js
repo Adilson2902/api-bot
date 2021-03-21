@@ -2,6 +2,25 @@
 import AssistantV2 from 'ibm-watson/assistant/v2';
 import { IamAuthenticator } from 'ibm-watson/auth'
  
+import Cors from 'cors' 
+
+const cors = Cors({
+    methods: ['GET', 'HEAD'],
+  })
+
+  function runMiddleware(req, res, fn) {
+    return new Promise((resolve, reject) => {
+      fn(req, res, (result) => {
+        if (result instanceof Error) {
+          return reject(result)
+        }
+  
+        return resolve(result)
+      })
+    })
+  }
+
+
 async function messagem(assistant,assistantId, question,session){
 var response
     await assistant.message({
@@ -22,8 +41,7 @@ return response
 
 export default async (req,res) =>{
 
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    await runMiddleware(req, res, cors)
 
 if(req.method === 'POST'){
 
