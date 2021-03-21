@@ -31,7 +31,6 @@ if(req.method === 'POST'){
    const session_id = req.body.session;
 const text = req.body.text;
 
-    console.log(apikey)
     const assistant = new AssistantV2({
         authenticator: new IamAuthenticator({ apikey: apikey }),
         serviceUrl: service,
@@ -39,11 +38,9 @@ const text = req.body.text;
     });
 
 
-   messagem(assistant,assistantid,text,session_id)
-    
-
   const respa = await messagem(assistant,assistantid,text,session_id)
    res.status(200).json(respa)
+
   
 }else {
 

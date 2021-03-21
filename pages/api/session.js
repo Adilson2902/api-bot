@@ -9,12 +9,12 @@ import { IamAuthenticator } from 'ibm-watson/auth'
             //"63ff75ed-f153-4a8a-8fca-920172b725d7"
         }).then(res => {
             response = { "session": res.result.session_id }
-            console.log("1",response.session)
+   
         }).catch(err => {
             console.log(err)
         });
         
-        console.log("1",response.session)
+   
 
     return response.session
    
