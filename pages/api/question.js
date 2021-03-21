@@ -41,10 +41,9 @@ const text = req.body.text;
 
    messagem(assistant,assistantid,text,session_id)
     
+
   const respa = await messagem(assistant,assistantid,text,session_id)
-   res.status(200).json({
-    "resposta":respa
-})
+   res.status(200).json(respa)
   
 }else {
 
